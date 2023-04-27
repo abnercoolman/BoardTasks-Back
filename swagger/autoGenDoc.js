@@ -1,12 +1,11 @@
 const mongooseToSwagger = require('mongoose-to-swagger');
-const swaggerAutoGen = require('swagger-autogen')({
+const swaggerAutogen = require('swagger-autogen')({
     openapi: '3.0.0',
     language: 'pt-BR',
 });
 
-const outputFile = './swagger_output.json';
-const endpointsFile = ['../index.js']
-// , '../src/routes.js'];
+let outputFile = './swagger_output.json';
+let endpointsFiles = ['../../index.js'];
 
 let doc = {
     info: {
@@ -28,7 +27,7 @@ let doc = {
     produces: ['applcation/json']
 }
 
-swaggerAutoGen(outputFile, endpointsFile, doc).then(() => {
+swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
 
     console.log("Documentação do swagger gerada encontra-se no arquivo em: " + outputFile);
     if (process.env.NODE_ENV !== 'production') {
